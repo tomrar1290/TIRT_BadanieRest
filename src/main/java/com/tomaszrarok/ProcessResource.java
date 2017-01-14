@@ -6,22 +6,20 @@
 package com.tomaszrarok;
 
 import com.tomaszrarok.model.DaneBadanie;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-import javax.persistence.Query;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Collections;
 
 /**
  *
@@ -53,7 +51,7 @@ public class ProcessResource {
         return "Requested time: "+String.valueOf(timeDiff);
     }
     
-     @GET
+    @GET
     @Path("counting/{size}")
     @Produces(MediaType.TEXT_PLAIN)
     public String getCounting(@PathParam("size") Integer size) {
@@ -66,7 +64,7 @@ public class ProcessResource {
         long stop = Calendar.getInstance().get(Calendar.MILLISECOND);
         int timeDiff = (int)(stop - start);
         
-        saveInDatabase("bubble", size, timeDiff);
+        saveInDatabase("counting", size, timeDiff);
         return "Requested time: "+String.valueOf(timeDiff);
     }
     
